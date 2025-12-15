@@ -31,8 +31,8 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1 className="login-title">⚡ OpenERP</h1>
-        <p className="login-subtitle">Sign in to your account</p>
+        <h1 className="login-title">⚡ WorkOS</h1>
+        <p className="login-subtitle">Your modern business operating system</p>
         <form className="login-form" onSubmit={onSubmit}>
           <input 
             value={username} 

@@ -44,7 +44,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <Layout title="Dashboard" subtitle="Welcome back! Here's what's happening.">
+    <Layout title="WorkOS Dashboard" subtitle="Your business at a glance">
       <div className="stats-grid">
         <div className="stat-card" style={{borderLeftColor: '#7c3aed'}}>
           <div className="stat-label">👥 Total Contacts</div>

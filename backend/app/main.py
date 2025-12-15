@@ -24,7 +24,7 @@ app = create_app()
 
 @app.get("/")
 def health():
-    return jsonify({"app": "OpenERP-MVP", "status": "ok"})
+    return jsonify({"app": "WorkOS (Legacy Flask)", "status": "ok"})
 
 
 if __name__ == "__main__":
