@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, abort
 from sqlalchemy import select
 from app.db import SessionLocal
 from app.models.deal import Deal
+from app.auth import require_auth
 
 
 deals_bp = Blueprint("deals", __name__)
@@ -12,6 +13,7 @@ def get_session():
 
 
 @deals_bp.get("/")
+@require_auth
 def list_deals():
     with get_session() as db:
         rows = db.execute(select(Deal).order_by(Deal.id.desc())).scalars().all()
@@ -28,6 +30,7 @@ def list_deals():
 
 
 @deals_bp.post("/")
+@require_auth
 def create_deal():
     data = request.get_json(force=True) or {}
     title = data.get("title")

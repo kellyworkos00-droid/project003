@@ -13,12 +13,16 @@ def create_app() -> Flask:
     from app.routes.deals import deals_bp
     from app.routes.inventory import inventory_bp
     from app.routes.sales import sales_bp
+    from app.routes.invoices import invoices_bp
+    from app.routes.projects import projects_bp
     from app.auth import auth_bp
 
     app.register_blueprint(contacts_bp, url_prefix="/contacts")
     app.register_blueprint(deals_bp, url_prefix="/deals")
     app.register_blueprint(inventory_bp, url_prefix="/inventory")
     app.register_blueprint(sales_bp, url_prefix="/sales")
+    app.register_blueprint(invoices_bp, url_prefix="/invoices")
+    app.register_blueprint(projects_bp, url_prefix="/projects")
     app.register_blueprint(auth_bp, url_prefix="/auth")
 
     return app

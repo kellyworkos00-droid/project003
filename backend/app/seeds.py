@@ -15,6 +15,8 @@ from app.models.contact import Contact
 from app.models.deal import Deal
 from app.models.product import Product
 from app.models.sale_order import SaleOrder, OrderItem
+from app.models.permission import Permission, RolePermission
+from app.utils import hash_password
 
 
 def seed():
@@ -37,15 +39,65 @@ def seed():
         # Seed users
         admin_role = db.query(Role).filter_by(name="admin").first()
         sales_role = db.query(Role).filter_by(name="sales").first()
+        viewer_role = db.query(Role).filter_by(name="viewer").first()
 
         if not db.query(User).filter_by(username="admin").first():
             users = [
-                User(username="admin", email="admin@openerp.local", role_id=admin_role.id, is_active=1),
-                User(username="sales", email="sales@openerp.local", role_id=sales_role.id, is_active=1),
+                User(username="admin", email="admin@openerp.local", 
+                     password_hash=hash_password("admin123"), role_id=admin_role.id, is_active=1),
+                User(username="sales", email="sales@openerp.local", 
+                     password_hash=hash_password("sales123"), role_id=sales_role.id, is_active=1),
+                User(username="viewer", email="viewer@openerp.local", 
+                     password_hash=hash_password("viewer123"), role_id=viewer_role.id, is_active=1),
             ]
             db.add_all(users)
             db.commit()
-            print("✓ Seeded users: admin, sales")
+            print("✓ Seeded users: admin (admin123), sales (sales123), viewer (viewer123)")
+
+        # Seed permissions
+        if db.query(Permission).count() == 0:
+            permissions = [
+                # Contacts
+                Permission(name="contacts.read", description="View contacts"),
+                Permission(name="contacts.write", description="Create/edit contacts"),
+                Permission(name="contacts.delete", description="Delete contacts"),
+                # Deals
+                Permission(name="deals.read", description="View deals"),
+                Permission(name="deals.write", description="Create/edit deals"),
+                Permission(name="deals.delete", description="Delete deals"),
+                # Inventory
+                Permission(name="inventory.read", description="View products"),
+                Permission(name="inventory.write", description="Create/edit products"),
+                Permission(name="inventory.delete", description="Delete products"),
+                # Sales
+                Permission(name="sales.read", description="View sales orders"),
+                Permission(name="sales.write", description="Create/edit sales orders"),
+                Permission(name="sales.delete", description="Delete sales orders"),
+                # Admin
+                Permission(name="users.manage", description="Manage users"),
+                Permission(name="settings.manage", description="Manage settings"),
+            ]
+            db.add_all(permissions)
+            db.commit()
+            print("✓ Seeded 14 permissions")
+
+            # Assign all permissions to admin role
+            all_perms = db.query(Permission).all()
+            for perm in all_perms:
+                db.add(RolePermission(role_id=admin_role.id, permission_id=perm.id))
+            
+            # Assign read/write permissions to sales role (not delete or admin)
+            sales_perms = [p for p in all_perms if p.name.endswith('.read') or p.name.endswith('.write')]
+            for perm in sales_perms:
+                db.add(RolePermission(role_id=sales_role.id, permission_id=perm.id))
+            
+            # Assign only read permissions to viewer role
+            viewer_perms = [p for p in all_perms if p.name.endswith('.read')]
+            for perm in viewer_perms:
+                db.add(RolePermission(role_id=viewer_role.id, permission_id=perm.id))
+            
+            db.commit()
+            print("✓ Assigned permissions to roles")
 
         # Seed contacts
         if db.query(Contact).count() == 0:

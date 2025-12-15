@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, abort
 from sqlalchemy import select
 from app.db import SessionLocal
 from app.models.sale_order import SaleOrder, OrderItem
+from app.auth import require_auth
 
 
 sales_bp = Blueprint("sales", __name__)
@@ -12,6 +13,7 @@ def get_session():
 
 
 @sales_bp.get("/")
+@require_auth
 def list_orders():
     with get_session() as db:
         rows = db.execute(select(SaleOrder).order_by(SaleOrder.id.desc())).scalars().all()
@@ -28,6 +30,7 @@ def list_orders():
 
 
 @sales_bp.post("/")
+@require_auth
 def create_order():
     data = request.get_json(force=True) or {}
     order_number = data.get("order_number")

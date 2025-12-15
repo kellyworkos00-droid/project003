@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, abort
 from sqlalchemy import select
 from app.db import SessionLocal
 from app.models.product import Product
+from app.auth import require_auth
 
 
 inventory_bp = Blueprint("inventory", __name__)
@@ -12,6 +13,7 @@ def get_session():
 
 
 @inventory_bp.get("/")
+@require_auth
 def list_products():
     with get_session() as db:
         rows = db.execute(select(Product).order_by(Product.id.desc())).scalars().all()
@@ -29,6 +31,7 @@ def list_products():
 
 
 @inventory_bp.post("/")
+@require_auth
 def create_product():
     data = request.get_json(force=True) or {}
     name = data.get("name")

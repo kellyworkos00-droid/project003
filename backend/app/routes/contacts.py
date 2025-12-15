@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, abort
 from sqlalchemy import select
 from app.db import SessionLocal
 from app.models.contact import Contact
+from app.auth import require_auth
 
 contacts_bp = Blueprint("contacts", __name__)
 
@@ -11,6 +12,7 @@ def get_session():
 
 
 @contacts_bp.get("/")
+@require_auth
 def list_contacts():
     with get_session() as db:
         rows = db.execute(select(Contact).order_by(Contact.id.desc())).scalars().all()
@@ -27,6 +29,7 @@ def list_contacts():
 
 
 @contacts_bp.post("/")
+@require_auth
 def create_contact():
     data = request.get_json(force=True) or {}
     name = data.get("name")
