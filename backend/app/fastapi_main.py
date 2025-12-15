@@ -8,6 +8,8 @@ from app.api.inventory import router as inventory_router
 from app.api.sales import router as sales_router
 from app.api.invoices import router as invoices_router
 from app.api.projects import router as projects_router
+from app.api.accounting import router as accounting_router
+from app.api.hr import router as hr_router
 from app.fastapi_auth import router as auth_router
 
 # Ensure data dir exists for SQLite development
@@ -33,6 +35,8 @@ app.include_router(inventory_router, prefix="/inventory", tags=["inventory"])
 app.include_router(sales_router, prefix="/sales", tags=["sales"])
 app.include_router(invoices_router, prefix="/invoices", tags=["invoices"])
 app.include_router(projects_router, prefix="/projects", tags=["projects"])
+app.include_router(accounting_router, prefix="/accounting", tags=["accounting"])
+app.include_router(hr_router, prefix="/hr", tags=["hr"])
 
 
 @app.get("/")
