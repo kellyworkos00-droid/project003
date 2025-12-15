@@ -16,7 +16,7 @@ Path("data").mkdir(parents=True, exist_ok=True)
 # Create tables (dev convenience)
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="WorkOS API", version="1.0.0", description="Modern business operating system - better than Odoo")
+app = FastAPI(title="KellyOS API", version="1.0.0", description="Modern business operating system - better than Odoo")
 
 app.add_middleware(
     CORSMiddleware,
@@ -37,4 +37,4 @@ app.include_router(projects_router, prefix="/projects", tags=["projects"])
 
 @app.get("/")
 async def health():
-    return {"app": "WorkOS", "version": "1.0.0", "status": "ok"}
+    return {"app": "KellyOS", "version": "1.0.0", "status": "ok"}
