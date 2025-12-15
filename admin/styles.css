@@ -1,0 +1,9 @@
+html, body { font-family: system-ui, sans-serif; margin: 0; padding: 0; }
+.container { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+nav { display: flex; gap: 12px; margin-bottom: 16px; }
+nav a { text-decoration: none; color: #0366d6; }
+form { display: flex; gap: 8px; margin: 12px 0; }
+input, button { padding: 8px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ddd; padding: 8px; }
+th { background: #f7f7f7; }

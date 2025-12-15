@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Node / Next.js
+admin/node_modules/
+admin/.next/
+admin/.turbo/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files
+backend/.env
+admin/.env.local
+
+# App data
+backend/data/
