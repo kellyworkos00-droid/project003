@@ -31,7 +31,7 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1 className="login-title">⚡ WorkOS</h1>
+        <h1 className="login-title">⚡ KellyOS</h1>
         <p className="login-subtitle">Your modern business operating system</p>
         <form className="login-form" onSubmit={onSubmit}>
           <input 

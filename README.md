@@ -1,11 +1,11 @@
-# WorkOS - Modern Business Operating System
+# KellyOS - Modern Business Operating System
 
 ![Status](https://img.shields.io/badge/status-production--ready-green)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688)
 ![Next.js](https://img.shields.io/badge/Next.js-14.2-black)
 ![Python](https://img.shields.io/badge/Python-3.11+-blue)
 
-**WorkOS** is a modern, high-performance ERP system built to be better than Odoo. Features include CRM, sales orders, inventory, invoicing, project management, and comprehensive role-based access control.
+**KellyOS** is a modern, high-performance ERP system built to be better than Odoo. Features include CRM, sales orders, inventory, invoicing, project management, and comprehensive role-based access control.
 
 ## Features
 
@@ -219,7 +219,7 @@ All endpoints (except `/auth/login`) require `Authorization: Bearer <token>` hea
 
 1. **Multi-Company Architecture**
    - Database-per-tenant isolation
-   - Subdomain routing (company1.workos.com)
+   - Subdomain routing (company1.kellyos.com)
    - Cross-company reporting (holding companies)
    - Data residency (EU/US/Asia)
 
@@ -414,7 +414,7 @@ npm start
 
 **backend/.env**
 ```env
-DATABASE_URL=postgresql://user:pass@localhost:5432/workos
+DATABASE_URL=postgresql://user:pass@localhost:5432/kellyos
 SECRET_KEY=your-secret-key-change-in-production
 ```
 
@@ -443,6 +443,6 @@ MIT License - see LICENSE file for details
 
 ---
 
-**WorkOS** - *Your business, optimized.* ⚡
+**KellyOS** - *Your business, optimized.* ⚡
 
 Repository: https://github.com/kellyworkos00-droid/project003
