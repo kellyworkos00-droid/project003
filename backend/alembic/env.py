@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 from logging.config import fileConfig
+import os
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
@@ -11,6 +12,11 @@ base_dir = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(base_dir))
 
 config = context.config
+
+# Read DATABASE_URL from env, fallback to SQLite
+db_url = os.getenv("DATABASE_URL", "sqlite:///./data/app.db")
+config.set_main_option("sqlalchemy.url", db_url)
+
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 

@@ -31,6 +31,8 @@ export default function ContactsPage() {
       <nav>
         <Link href="/">Login</Link>
         <Link href="/deals">Deals</Link>
+        <Link href="/inventory">Inventory</Link>
+        <Link href="/sales">Sales Orders</Link>
       </nav>
       <form onSubmit={onCreate}>
         <input value={name} onChange={e=>setName(e.target.value)} placeholder="Name" required />

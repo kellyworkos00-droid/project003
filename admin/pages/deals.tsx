@@ -38,6 +38,8 @@ export default function DealsPage() {
       <nav>
         <Link href="/">Login</Link>
         <Link href="/contacts">Contacts</Link>
+        <Link href="/inventory">Inventory</Link>
+        <Link href="/sales">Sales Orders</Link>
       </nav>
       <form onSubmit={onCreate}>
         <input value={title} onChange={e=>setTitle(e.target.value)} placeholder="Title" required />

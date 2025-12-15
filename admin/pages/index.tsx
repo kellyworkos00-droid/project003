@@ -28,6 +28,8 @@ export default function LoginPage() {
       <nav>
         <Link href="/contacts">Contacts</Link>
         <Link href="/deals">Deals</Link>
+        <Link href="/inventory">Inventory</Link>
+        <Link href="/sales">Sales Orders</Link>
       </nav>
       <form onSubmit={onSubmit}>
         <input value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />

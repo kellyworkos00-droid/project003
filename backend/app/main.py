@@ -5,6 +5,9 @@ from app.db import Base, engine
 from app import create_app
 from app.models.contact import Contact  # noqa: F401  ensure model is imported
 from app.models.deal import Deal  # noqa: F401  ensure model is imported
+from app.models.product import Product  # noqa: F401  ensure model is imported
+from app.models.sale_order import SaleOrder, OrderItem  # noqa: F401  ensure models are imported
+from app.models.user import User, Role  # noqa: F401  ensure models are imported
 
 
 # Ensure data dir exists for SQLite
